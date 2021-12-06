@@ -31,7 +31,8 @@ public abstract class TodocDatabase extends RoomDatabase {
             synchronized (TodocDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            TodocDatabase.class, "MyDataaabase.db").addCallback(prepopulateDatabase())
+                            TodocDatabase.class, "MyDataaabase.db")
+                            .addCallback(prepopulateDatabase())
                             .build();
                     //
                 }
@@ -50,13 +51,15 @@ public abstract class TodocDatabase extends RoomDatabase {
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
 
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("id", 1);
-                contentValues.put("projectId", 1);
-                contentValues.put("name", "First Task");
-                contentValues.put("creationTimestamp", "1499070300000L");
+                Project[] projects = Project.getAllProjects();
+                for (Project project : projects) {
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("id", project.getId());
+                    contentValues.put("name", project.getName());
+                    contentValues.put("color", project.getColor());
+                    db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
+                }
 
-                db.insert("Task", OnConflictStrategy.IGNORE, contentValues);
             }
         };
     }

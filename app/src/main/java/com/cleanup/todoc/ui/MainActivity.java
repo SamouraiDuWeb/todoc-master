@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
 
                 Task task = new Task(
-                        id,
+                        1L,
                         taskName,
                         new Date().getTime()
                 );
