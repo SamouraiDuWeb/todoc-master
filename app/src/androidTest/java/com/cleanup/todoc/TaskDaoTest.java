@@ -27,7 +27,7 @@ public class TaskDaoTest {
     private static long TASK_ID = 1;
     private static long PROJECT_ID = 2;
     private static long TEST_TIMESTAMP = 1499070300000L;
-    private static Task TASK_DEMO = new Task(TASK_ID, PROJECT_ID, "Test Task", TEST_TIMESTAMP);
+    private static Task TASK_DEMO = new Task(PROJECT_ID, "Test Task", TEST_TIMESTAMP);
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();

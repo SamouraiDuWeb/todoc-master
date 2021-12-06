@@ -13,37 +13,25 @@ import androidx.room.PrimaryKey;
  *
  * @author Gaëtan HERFRAY
  */
-@Entity
+@Entity(tableName = "project")
 public class Project {
-
-    public String getName;
-    public int getColor;
-    public long getId;
-
     /**
      * The unique identifier of the project
      */
-    @PrimaryKey
-    @ColumnInfo(name = "id")
-     long id;
-
-
+    @PrimaryKey(autoGenerate = true)
+    private final long id;
 
     /**
      * The name of the project
      */
     @NonNull
-    @ColumnInfo(name = "name")
-     String name;
+    private final String name;
 
     /**
      * The hex (ARGB) code of the color associated to the project
      */
     @ColorInt
-    @ColumnInfo(name = "color")
-     int color;
-
-    public Project() {}
+    private final int color;
 
     /**
      * Instantiates a new Project.
@@ -52,7 +40,7 @@ public class Project {
      * @param name  the name of the project to set
      * @param color the hex (ARGB) code of the color associated to the project to set
      */
-    private Project(long id, @NonNull String name, @ColorInt int color) {
+    public Project(long id, @NonNull String name, @ColorInt int color) {
         this.id = id;
         this.name = name;
         this.color = color;
@@ -97,10 +85,6 @@ public class Project {
         return id;
     }
 
-    private void setId(long id) {
-        this.id = id;
-    }
-
     /**
      * Returns the name of the project.
      *
@@ -109,10 +93,6 @@ public class Project {
     @NonNull
     public String getName() {
         return name;
-    }
-
-    private void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -125,13 +105,10 @@ public class Project {
         return color;
     }
 
-    private void setColor(int color) {
-        this.color = color;
-    }
-
     @Override
     @NonNull
     public String toString() {
         return getName();
     }
 }
+

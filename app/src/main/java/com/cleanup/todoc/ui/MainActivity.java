@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
                 Task task = new Task(
                         id,
-                        taskProject.getId(),
                         taskName,
                         new Date().getTime()
                 );
@@ -235,8 +234,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        tasks.add(task);
-        updateTasks(tasks);
+        taskViewModel.createTask(task);
     }
 
     /**
