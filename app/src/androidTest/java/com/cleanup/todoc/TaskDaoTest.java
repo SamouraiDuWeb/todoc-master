@@ -74,16 +74,6 @@ public class TaskDaoTest {
 
     }
 
-    @Test
-    public void createAndGetProject() throws InterruptedException {
-        this.database.projectDao().insertProject(testProject);
-        List<Project> project = LiveDataTestUtil.getValue(this.database.projectDao().getProjects());
-        assertTrue(project.get(0).getId() == projectId
-                && project.get(0).getName().equals(testProject.getName())
-                && project.get(0).getColor() == testProject.getColor());
-    }
-
-
     @After
     public void closeDb() {
         database.close();
